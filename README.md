@@ -1,6 +1,6 @@
 # kapb14/dockerfiles
 
-####### my set of Docker configurations
+##### my set of Docker configurations
 
 ___
 
