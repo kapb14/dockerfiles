@@ -1,22 +1,27 @@
-FROM debian:jessie
+#FROM debian:jessie
+FROM kapb14/wget
 
 MAINTAINER Aleksandr Karushin <kapb14@gmail.com>
 
-ENV APP_VERSION v1.2.3
-ENV APP_RELEASE_URL https://github.com/andreimarcu/linx-server/releases/download/v1.2.3/linx-server-v1.2.3_linux-amd64
+WORKDIR /opt
 
-# ADD $APP_RELEASE_URL
-# ADD https://github.com/andreimarcu/linx-server/releases/download/v1.2.3/linx-server-v1.2.3_linux-amd64 /opt
+ENV SERVER_RELEASE_URL https://github.com/andreimarcu/linx-server/releases/download/v1.2.3/linx-server-v1.2.3_linux-amd64
+ENV GENKEY_RELEASE_URL https://github.com/andreimarcu/linx-server/releases/download/v1.2.3/linx-genkey-v1.2.3_linux-amd64
+ENV SITENAME "links-genkey docker image"
 
-RUN apt-get update \
-&& apt-get install -y \
-	wget \
-&& wget -O /opt/linx-server $APP_RELEASE_URL \
-&& rm -rf /var/lib/apt/lists/*
+#RUN apt-get update \
+#&& apt-get install -y wget \
+#&& rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["/opt/linx-server"]
-CMD ["--help"]
+RUN wget -O /opt/linx-server $SERVER_RELEASE_URL \
+&& chmod +x /opt/linx-server
 
+#RUN wget -O /opt/linx-genkey $GENKEY_RELEASE_URL \
+#&& chmod +x /opt/linx-genkey
 
+ADD ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+CMD ["/entrypoint.sh"]
 
 
