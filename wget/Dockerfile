@@ -1,9 +1,8 @@
-FROM debian:jessie
+FROM alpine:latest
 
 MAINTAINER Aleksandr Karushin <kapb14@gmail.com>
 
-RUN apt-get update \
-&& apt-get install -y wget \
-&& rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache wget
 
-# kapb14/wget
+ENTRYPOINT ["wget"]
+
