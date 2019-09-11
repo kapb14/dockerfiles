@@ -1,0 +1,14 @@
+data/
+Dockerfile
+Dockerfile.ubuntu
+docker-compose.yml
+.git/
+.gitignore
+README.md
+*.tmp
+*.log
+*.out
+*.zip
+*.tar
+*.gz
+

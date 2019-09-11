@@ -1,0 +1,14 @@
+version: '3.6'
+volumes:
+  squid-cache:
+services:
+  squid:
+    container_name: squid
+    restart: unless-stopped
+    build:
+      context: .
+    image: kapb14/docker-squid
+    volumes:
+    - "squid-cache:/var/spool/squid"
+    #ports:
+    #- "3128:3128"
